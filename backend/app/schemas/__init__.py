@@ -1,1 +1,6 @@
-from app.schemas.caso import CasoBase, CasoCreate, CasoUpdate, CasoOut
+from app.schemas.caso import (
+    CasoEstudioCreate,
+    CasoEstudioOut,
+    ConsultaPacienteCreate,
+    ConsultaPacienteOut,
+)

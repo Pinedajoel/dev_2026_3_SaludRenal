@@ -1,15 +1,24 @@
-from typing import Optional
-from sqlalchemy import String, Text
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import Column, Integer, String, DateTime
+from datetime import datetime
 from app.database import Base
 
-class Caso(Base):
-    __tablename__="casos"
+class CasoEstudio(Base):
+    __tablename__ = "casos_estudio"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-    nombre: Mapped[str] = mapped_column(String(100))
-    edad: Mapped[int]
-    antecedentes: Mapped[str] = mapped_column(Text)
-    motivo_consulta: Mapped[str] = mapped_column(Text)
-    signos_sintomas: Mapped[str] = mapped_column(Text)
-    foto_url: Mapped[Optional[str]] = mapped_column(String(300), nullable=True)
+    id = Column(Integer, primary_key=True, index=True)
+    titulo = Column(String, index=True)
+    descripcion_clinica = Column(String)
+    pregunta = Column(String)
+    opcion_correcta = Column(String)
+    explicacion = Column(String, nullable=True)
+
+class ConsultaPaciente(Base):
+    __tablename__ = "consultas_paciente"
+
+    id = Column(Integer, primary_key=True, index=True)
+    paciente_id = Column(String, index=True)
+    sintomas_o_dolor = Column(String)
+    nombre_archivo_examen = Column(String, nullable=True)
+    orientacion_preliminar = Column(String, nullable=True)
+    advertencia_medica = Column(String, default="Aviso médico predeterminado")
+    fecha_registro = Column(DateTime, default=datetime.utcnow)
