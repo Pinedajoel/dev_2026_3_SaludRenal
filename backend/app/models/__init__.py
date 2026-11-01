@@ -1,1 +1,1 @@
-from app.models.caso import Caso
+from app.models.caso import CasoEstudio, ConsultaPaciente

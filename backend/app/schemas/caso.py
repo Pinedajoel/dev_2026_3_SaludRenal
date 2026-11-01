@@ -1,27 +1,32 @@
-from typing import Optional
-from pydantic import BaseModel, Field
+from typing import List, Optional
+from pydantic import BaseModel
 
-class CasoBase(BaseModel):
-    nombre: str = Field(..., max_length=100)
-    edad: int = Field(..., ge=0, le=120)
-    antecedentes: str
-    motivo_consulta: str
-    signos_sintomas: str
-    foto_url: Optional[str] = None
 
-class CasoCreate(CasoBase):
+class CasoEstudioCreate(BaseModel):
     pass
 
-class CasoUpdate(BaseModel):
-    nombre: Optional[str] = Field(None, max_length=100)
-    edad: Optional[int] = Field(None, ge=0, le=120)
-    antecedentes: Optional[str] = None
-    motivo_consulta: Optional[str] = None
-    signos_sintomas: Optional[str] = None
-    foto_url: Optional[str] = None
 
-class CasoOut(CasoBase):
+class CasoEstudioUpdate(BaseModel):
+    pass
+
+
+class CasoEstudioOut(BaseModel):
     id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True
+
+
+class ConsultaPacienteCreate(BaseModel):
+    pass
+
+
+class ConsultaPacienteUpdate(BaseModel):
+    pass
+
+
+class ConsultaPacienteOut(BaseModel):
+    id: int
+
+    class Config:
+        orm_mode = True
