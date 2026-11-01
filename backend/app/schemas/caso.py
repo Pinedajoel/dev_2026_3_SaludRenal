@@ -1,36 +1,32 @@
+from typing import List, Optional
 from pydantic import BaseModel
-from typing import Optional
-from datetime import datetime
 
-class CasoEstudioBase(BaseModel):
-    titulo: str
-    descripcion_clinica: str
-    pregunta: str
-    opcion_correcta: str
-    explicacion: Optional[str] = None
 
-class CasoEstudioCreate(CasoEstudioBase):
+class CasoEstudioCreate(BaseModel):
     pass
 
-class CasoEstudioOut(CasoEstudioBase):
+
+class CasoEstudioUpdate(BaseModel):
+    pass
+
+
+class CasoEstudioOut(BaseModel):
     id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
-class ConsultaPacienteBase(BaseModel):
-    paciente_id: str
-    sintomas_o_dolor: str
-    nombre_archivo_examen: Optional[str] = None
 
-class ConsultaPacienteCreate(ConsultaPacienteBase):
+class ConsultaPacienteCreate(BaseModel):
     pass
 
-class ConsultaPacienteOut(ConsultaPacienteBase):
+
+class ConsultaPacienteUpdate(BaseModel):
+    pass
+
+
+class ConsultaPacienteOut(BaseModel):
     id: int
-    orientacion_preliminar: Optional[str] = None
-    advertencia_medica: str
-    fecha_registro: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
